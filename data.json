@@ -1,0 +1,12 @@
+[
+  {
+    "name": "软件名称1",
+    "description": "这是软件1的描述。",
+    "url": "software1.zip"
+  },
+  {
+    "name": "软件名称2",
+    "description": "这是软件2的描述。",
+    "url": "software2.zip"
+  }
+]
