@@ -6,13 +6,20 @@
     <title>软件分享页面</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        html {
+            height: 100%; /* 设置html和body的高度为100% */
+            margin: 0; /* 去掉默认的边距 */
+        }
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            height: 100%; /* 设置html和body的高度为100% */
+            margin: 0; /* 去掉默认的边距 */
             padding: 0;
             overflow: hidden; /* 防止页面滚动 */
         }
         .background {
+            width: 100%; /* 填满宽度 */
+            height: 100%; /* 填满高度 */
             position: fixed;
             top: 0;
             left: 0;
@@ -21,10 +28,12 @@
             background-image: url('/img/background.jpg'); /* 替换为你的背景图像路径 */
             background-size: cover;
             background-position: center;
-            filter: blur(8px); /* 设置虚化效果 */
+            filter: blur(1px); /* 设置虚化效果 */
             z-index: -1; /* 放在最底层 */
         }
         .container {
+            position: relative; /* 相对定位，使内容可以覆盖背景 */
+            z-index: 1; /* 确保内容在背景上方 */
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
