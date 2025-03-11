@@ -8,15 +8,27 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            overflow: hidden; /* 防止页面滚动 */
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/img/background.jpg'); /* 替换为你的背景图像路径 */
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px); /* 设置虚化效果 */
+            z-index: -1; /* 放在最底层 */
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.8); /* 设置背景为半透明 */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -52,6 +64,7 @@
 </head>
 <body>
 
+<div class="background"></div> <!-- 添加虚化背景 -->
 <div class="container">
     <h1>软件分享页面</h1>
     <div id="software-list"></div>
