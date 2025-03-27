@@ -1,103 +1,372 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>软件分享页面</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>AI智能客服定制</title>
     <style>
-        html {
-            height: 100%; /* 设置html和body的高度为100% */
-            margin: 0; /* 去掉默认的边距 */
-        }
         body {
-            font-family: Arial, sans-serif;
-            height: 100%; /* 设置html和body的高度为100% */
-            margin: 0; /* 去掉默认的边距 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 0;
-            overflow: hidden; /* 防止页面滚动 */
-        }
-        .background {
-            width: 100%; /* 填满宽度 */
-            height: 100%; /* 填满高度 */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/img/background.jpg'); /* 替换为你的背景图像路径 */
-            background-size: cover;
-            background-position: center;
-            /*filter: blur(1px); !* 设置虚化效果 *!*/
-            /*z-index: -1; !* 放在最底层 *!*/
-        }
-        .container {
-            position: relative; /* 相对定位，使内容可以覆盖背景 */
-            z-index: 1; /* 确保内容在背景上方 */
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* 设置背景为半透明 */
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            margin: 0 0;
-            padding: 0 0;
-            text-align: center;
+            background-color: #f9f9f9;
             color: #333;
+            line-height: 1.7;
         }
-        .software-item {
-            margin: 5px 0;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: background 0.3s;
+
+        .container {
+            width: 85%;
+            max-width: 1200px; /* 限制最大宽度 */
+            margin: auto;
+            overflow: hidden;
         }
-        .software-item:hover {
-            background: #f9f9f9;
-        }
-        .download-link {
-            display: block;
-            margin-top: 5px;
-            text-align: center;
-            padding: 5px;
-            background: #007bff;
+
+        header {
+            background: linear-gradient(to right, #4CAF50, #8BC34A); /* 渐变色背景 */
             color: white;
-            border-radius: 5px;
-            text-decoration: none;
+            padding: 50px 0;
+            text-align: center;
         }
-        .download-link:hover {
-            background: #0056b3;
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 700; /* 更粗的字体 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 阴影效果 */
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        section#main {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        section#main h2 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #4CAF50; /* 主题色 */
+            font-weight: 600;
+        }
+
+        section#main p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自适应列数 */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s ease; /* 添加过渡效果 */
+        }
+
+        .feature:hover {
+            transform: translateY(-5px); /* 悬停时上移 */
+        }
+
+        .feature h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .feature p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info a {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            background-color: #388E3C; /* 更深的绿色 */
+        }
+
+        .contact-info img {
+            width: 120px;
+            height: auto;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease; /* 二维码悬停动画 */
+        }
+        .contact-info img:hover{
+            transform: scale(1.1);
+        }
+
+        footer {
+            padding: 30px 0;
+            margin-top: 60px;
+            color: white;
+            background-color: #333;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .download-links a {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 25px;
+            background-color: #388E3C; /* 绿色 */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .download-links a:hover {
+            background-color: #04aafa; /* 黄色 */
+        }
+
+        .copy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed; /* 保持在屏幕中央 */
+            z-index: 1; /* 确保在顶层 */
+            left: 0;
+            top: 0;
+            width: 100%; /* 覆盖整个屏幕 */
+            height: 100%; /* 覆盖整个屏幕 */
+            overflow: auto; /* 如果内容超出屏幕则显示滚动条 */
+            background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+        }
+
+        /* 模态框内容 */
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* 关闭按钮 */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            section#main h2 {
+                font-size: 2.2em;
+            }
+
+            section#main p {
+                font-size: 1.1em;
+            }
+
+            .features {
+                grid-template-columns: 1fr; /* 垂直排列 */
+            }
+            .contact-info img{
+                width: 100px;
+            }
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-<div class="background"></div> <!-- 添加虚化背景 -->
-<div class="container">
-    <h2>软件免费分享</h2>
-    <div id="software-list"></div>
-</div>
+    <header>
+        <div class="container">
+            <h1>AI智能客服定制</h1>
+            <h1>告别漏诊焦虑，打造智慧门诊新体验！</h1>
+            <p>您的专属AI助手，7x24小时在线，让患者咨询不再等待！</p>
+        </div>
+    </header>
 
-<script>
-    $(document).ready(function() {
-        $.getJSON('data.json', function(data) {
-            var softwareList = $('#software-list');
-            $.each(data, function(index, software) {
-                var softwareItem = `
-                    <div class="software-item">
-                        <h4>${software.name}</h4>
-                        <p>${software.description}</p>
-                        <a href="${software.url}" class="download-link" download>下载软件</a>
-                    </div>
-                `;
-                softwareList.append(softwareItem);
-            });
-        });
+    <section id="main">
+        <div class="container">
+            <h2>升级您的门诊，只需三天！</h2>
+            <p>还在为患者夜间咨询无人回复烦恼？三天完成门诊公众号AI改造，全新上线DeepSeek AI智能客服，7×24小时秒回挂号、费用、术后护理等问题！自动调取门诊专有知识库，引导客服到线下门诊，精准分诊推荐。让科技温暖每一次沟通。</p>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>首年AI训练费全免</h3>
+                    <p>减轻您的初期投入负担，轻松体验AI带来的效率提升，专注于患者服务。</p>
+                </div>
+                <div class="feature">
+                    <h3>定制对话场景设计</h3>
+                    <p>根据您的门诊特点和患者需求，量身定制AI对话流程，提供个性化服务。</p>
+                </div>
+                <div class="feature">
+                    <h3>专属知识库搭建</h3>
+                    <p>打造专属的AI知识库，确保AI客服能够准确、专业地回答患者的各种问题。</p>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <p>立即咨询，开启您的智慧门诊升级之旅！</p>
+                <p>
+                    微信咨询：
+                    <span id="wechat-id">Open-AI-Max</span>  <!-- 替换成你的微信号 -->
+                    <button class="copy-button" id="copy-wechat">复制微信号</button>
+                </p>
+                <p>电话咨询：📞<span id="phone-number">18965131409</span></p>
+                <!-- 微信二维码 -->
+                <!-- 微信二维码 -->
+                <a href="#" onclick="return false;">
+                    <img src="img/wechat.png" alt="微信二维码" id="weixin-qrcode">
+                </a>
+                <!-- 支付宝二维码 -->
+                <a href="#" onclick="return false;">
+                    <img src="img/alipay.png" alt="支付宝二维码" id="alipay-qrcode">
+                </a>
+                <!-- 弹窗 (模态框) -->
+                <div id="qrcodeModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="expandedQrcode">
+                </div>
+            </div>
+
+            <div class="download-links">
+                <a href="software.html" target="_blank">获取其他免费软件</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI智能门诊客服定制. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 获取电话号码元素
+        const phoneNumberElement = document.getElementById('phone-number');
+        // 添加点击事件，复制电话号码到剪贴板
+        phoneNumberElement.addEventListener('click', () => {
+        const phoneNumber = phoneNumberElement.textContent;
+        navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+        alert('电话号码已复制：' + phoneNumber); // 提示用户
+    })
+        .catch(err => {
+        console.error('复制失败：', err);
+        alert('复制失败，请手动复制');
     });
-</script>
+    });
+        // 获取二维码图片元素和弹窗元素
+        const weixinQrcode = document.getElementById('weixin-qrcode');
+        const alipayQrcode = document.getElementById('alipay-qrcode');
+        const modal = document.getElementById('qrcodeModal');
+        const modalImg = document.getElementById('expandedQrcode');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        // 点击二维码图片显示弹窗
+        weixinQrcode.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = weixinQrcode.src;
+    });
+        alipayQrcode.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = alipayQrcode.src;
+    });
+        // 点击关闭按钮关闭弹窗
+        closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+        // 点击弹窗外部关闭弹窗
+        window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+    });
+    // 复制微信号
+    const copyWechatButton = document.getElementById('copy-wechat');
+    const wechatIdElement = document.getElementById('wechat-id');
+    copyWechatButton.addEventListener('click', () => {
+        const wechatId = wechatIdElement.textContent;
+        navigator.clipboard.writeText(wechatId)
+            .then(() => {
+                alert('微信号已复制：' + wechatId + '，请到微信添加好友');
+            })
+            .catch(err => {
+                console.error('复制微信号失败：', err);
+                alert('复制微信号失败，请手动复制');
+            });
+    });
+
+    </script>
+
 
 </body>
 </html>

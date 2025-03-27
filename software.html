@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件分享页面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html {
+            height: 100%; /* 设置html和body的高度为100% */
+            margin: 0; /* 去掉默认的边距 */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%; /* 设置html和body的高度为100% */
+            margin: 0; /* 去掉默认的边距 */
+            padding: 0;
+            overflow: hidden; /* 防止页面滚动 */
+        }
+        .background {
+            width: 100%; /* 填满宽度 */
+            height: 100%; /* 填满高度 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/img/background.jpg'); /* 替换为你的背景图像路径 */
+            background-size: cover;
+            background-position: center;
+            /*filter: blur(1px); !* 设置虚化效果 *!*/
+            /*z-index: -1; !* 放在最底层 *!*/
+        }
+        .container {
+            position: relative; /* 相对定位，使内容可以覆盖背景 */
+            z-index: 1; /* 确保内容在背景上方 */
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* 设置背景为半透明 */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin: 0 0;
+            padding: 0 0;
+            text-align: center;
+            color: #333;
+        }
+        .software-item {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .software-item:hover {
+            background: #f9f9f9;
+        }
+        .download-link {
+            display: block;
+            margin-top: 5px;
+            text-align: center;
+            padding: 5px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .download-link:hover {
+            background: #0056b3;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="background"></div> <!-- 添加虚化背景 -->
+<div class="container">
+    <h2>软件免费分享</h2>
+    <div id="software-list"></div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.getJSON('data.json', function(data) {
+            var softwareList = $('#software-list');
+            $.each(data, function(index, software) {
+                var softwareItem = `
+                    <div class="software-item">
+                        <h4>${software.name}</h4>
+                        <p>${software.description}</p>
+                        <a href="${software.url}" class="download-link" download>下载软件</a>
+                    </div>
+                `;
+                softwareList.append(softwareItem);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
