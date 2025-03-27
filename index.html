@@ -173,16 +173,15 @@
 
         /* 模态框样式 */
         .modal {
-            display: none; /* 默认隐藏 */
-            position: fixed; /* 保持在屏幕中央 */
-            z-index: 1; /* 确保在顶层 */
+            display: none;
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%; /* 覆盖整个屏幕 */
-            height: 100%; /* 覆盖整个屏幕 */
-            overflow: auto; /* 如果内容超出屏幕则显示滚动条 */
-            background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
-            /* 添加以下样式以实现居中 */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -191,8 +190,16 @@
         .modal-content {
             margin: auto;
             display: block;
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 80%; /* 初始最大宽度 */
+            max-height: 80%; /* 初始最大高度 */
+            transition: transform 0.3s ease; /* 添加过渡效果 */
+        }
+        /* 放大后的样式 (放大 100%) */
+        .modal-content.zoomed {
+            max-width: 160%; /* 放大后的最大宽度 (80% * 2 = 160%) */
+            max-height: 160%; /* 放大后的最大高度 (80% * 2 = 160%) */
+            /* 或者使用 transform: scale(2); */
+            /* transform: scale(2); */
         }
         /* 关闭按钮 */
         .close {
@@ -210,6 +217,7 @@
             text-decoration: none;
             cursor: pointer;
         }
+
 
 
         /* 响应式设计 */
@@ -352,33 +360,42 @@
                 modalImg.src = alipayQrcode.src;
             });
         }
+        // 添加模态框图片点击事件，用于放大/缩小
+        if (modalImg) {
+            modalImg.addEventListener('click', () => {
+                modalImg.classList.toggle('zoomed');
+            });
+        }
         // 点击关闭按钮关闭弹窗
         if (closeBtn && modal) {
             closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
+                modalImg.classList.remove('zoomed'); // 关闭时移除放大状态
             });
         }
         // 点击弹窗外部关闭弹窗
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
                 modal.style.display = 'none';
+                modalImg.classList.remove('zoomed'); // 关闭时移除放大状态
             }
         });
-
         // 复制微信号
-    const copyWechatButton = document.getElementById('copy-wechat');
-    const wechatIdElement = document.getElementById('wechat-id');
-    copyWechatButton.addEventListener('click', () => {
-        const wechatId = wechatIdElement.textContent;
-        navigator.clipboard.writeText(wechatId)
-            .then(() => {
-                alert('微信号已复制：' + wechatId + '，请到微信添加好友');
-            })
-            .catch(err => {
-                console.error('复制微信号失败：', err);
-                alert('复制微信号失败，请手动复制');
+        const copyWechatButton = document.getElementById('copy-wechat');
+        const wechatIdElement = document.getElementById('wechat-id');
+        if (copyWechatButton && wechatIdElement) {  //Check if elements exist before adding listener
+            copyWechatButton.addEventListener('click', () => {
+                const wechatId = wechatIdElement.textContent;
+                navigator.clipboard.writeText(wechatId)
+                    .then(() => {
+                        alert('微信号已复制：' + wechatId + '，请到微信添加好友');
+                    })
+                    .catch(err => {
+                        console.error('复制微信号失败：', err);
+                        alert('复制微信号失败，请手动复制');
+                    });
             });
-    });
+        }
 
     </script>
 
