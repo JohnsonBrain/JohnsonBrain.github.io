@@ -35,11 +35,13 @@
             position: relative; /* 相对定位，使内容可以覆盖背景 */
             z-index: 1; /* 确保内容在背景上方 */
             max-width: 800px;
+            max-height: 80vh; /* 设置最大高度为视窗高度的80% */
             margin: 50px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.8); /* 设置背景为半透明 */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* 添加垂直滚动条 */
         }
         h2 {
             margin: 0 0;
