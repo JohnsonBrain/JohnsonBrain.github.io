@@ -32,16 +32,37 @@
             /*z-index: -1; !* 放在最底层 *!*/
         }
         .container {
-            position: relative; /* 相对定位，使内容可以覆盖背景 */
-            z-index: 1; /* 确保内容在背景上方 */
+            position: relative;
+            z-index: 1;
             max-width: 800px;
-            max-height: 80vh; /* 设置最大高度为视窗高度的80% */
+            max-height: 80vh;
             margin: 50px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* 设置背景为半透明 */
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* 添加垂直滚动条 */
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+        }
+        
+        /* 自定义滚动条样式 */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .container::-webkit-scrollbar-thumb {
+            background-color: rgba(155, 155, 155, 0.5);
+            border-radius: 4px;
+            border: 2px solid transparent;
+        }
+        
+        .container::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(155, 155, 155, 0.8);
         }
         h2 {
             margin: 0 0;
